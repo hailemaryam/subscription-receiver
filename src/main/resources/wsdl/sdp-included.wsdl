@@ -1,0 +1,174 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns2="http://www.csapi.org/schema/parlayx/data/sync/v1_0/local" xmlns:ns1="http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/interface" name="DataSync" targetNamespace="http://www.csapi.org/wsdl/parlayx/data/sync/v1_0/interface">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.csapi.org/schema/parlayx/data/v1_0" targetNamespace="http://www.csapi.org/schema/parlayx/data/v1_0" version="1.0">
+            <xs:complexType name="UserID">
+                <xs:sequence>
+                    <xs:element name="ID" type="xs:string"/>
+                    <xs:element name="type" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NamedParameterList">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:NamedParameter"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NamedParameter">
+                <xs:sequence>
+                    <xs:element name="key" type="xs:string"/>
+                    <xs:element name="value" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ProductDetail">
+                <xs:sequence>
+                    <xs:element name="notifySPURL" type="xs:string"/>
+                    <xs:element minOccurs="0" name="operationTime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="subscriptionValidTime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="subscriptionAddtionalInfo" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.csapi.org/schema/parlayx/data/sync/v1_0/local" xmlns:ns1="http://www.csapi.org/schema/parlayx/data/v1_0" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.csapi.org/schema/parlayx/data/sync/v1_0/local">
+            <xs:import namespace="http://www.csapi.org/schema/parlayx/data/v1_0"/>
+            <xs:element name="changeMSISDN" type="tns:changeMSISDN"/>
+            <xs:element name="changeMSISDNResponse" type="tns:changeMSISDNResponse"/>
+            <xs:element name="syncMSISDNChange" type="tns:syncMSISDNChange"/>
+            <xs:element name="syncMSISDNChangeResponse" type="tns:syncMSISDNChangeResponse"/>
+            <xs:element name="syncOrderRelation" type="tns:syncOrderRelation"/>
+            <xs:element name="syncOrderRelationResponse" type="tns:syncOrderRelationResponse"/>
+            <xs:element name="syncSubscriptionActive" type="tns:syncSubscriptionActive"/>
+            <xs:element name="syncSubscriptionActiveResponse" type="tns:syncSubscriptionActiveResponse"/>
+            <xs:element name="syncSubscriptionData" type="tns:syncSubscriptionData"/>
+            <xs:element name="syncSubscriptionDataResponse" type="tns:syncSubscriptionDataResponse"/>
+            <xs:complexType name="syncOrderRelation">
+                <xs:sequence>
+                    <xs:element name="userID" type="ns1:UserID"/>
+                    <xs:element name="spID" type="xs:string"/>
+                    <xs:element name="productID" type="xs:string"/>
+                    <xs:element name="serviceID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="serviceList" type="xs:string"/>
+                    <xs:element name="updateType" type="xs:int"/>
+                    <xs:element name="updateTime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="updateDesc" type="xs:string"/>
+                    <xs:element minOccurs="0" name="effectiveTime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="expiryTime" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncOrderRelationResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="xs:int"/>
+                    <xs:element name="resultDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncSubscriptionData">
+                <xs:sequence>
+                    <xs:element name="MSISDN" type="xs:string"/>
+                    <xs:element name="serviceId" type="xs:string"/>
+                    <xs:element name="productId" type="xs:string"/>
+                    <xs:element name="updateType" type="xs:int"/>
+                    <xs:element name="productDetail" type="ns1:ProductDetail"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncSubscriptionDataResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncMSISDNChange">
+                <xs:sequence>
+                    <xs:element name="MSISDN" type="xs:string"/>
+                    <xs:element name="newMSISDN" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncMSISDNChangeResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="xs:int"/>
+                    <xs:element name="resultDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncSubscriptionActive">
+                <xs:sequence>
+                    <xs:element name="userID" type="ns1:UserID"/>
+                    <xs:element name="spID" type="xs:string"/>
+                    <xs:element name="productID" type="xs:string"/>
+                    <xs:element name="serviceID" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="syncSubscriptionActiveResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="xs:int"/>
+                    <xs:element name="resultDescription" type="xs:string"/>
+                    <xs:element minOccurs="0" name="extensionInfo" type="ns1:NamedParameterList"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="changeMSISDN">
+                <xs:sequence>
+                    <xs:element name="MSISDN" type="xs:string"/>
+                    <xs:element name="newMSISDN" type="xs:string"/>
+                    <xs:element name="timeStamp" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="changeMSISDNResponse">
+                <xs:sequence>
+                    <xs:element name="result" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="syncOrderRelation">
+        <wsdl:part element="ns2:syncOrderRelation" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncSubscriptionDataResponse">
+        <wsdl:part element="ns2:syncSubscriptionDataResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncSubscriptionActiveResponse">
+        <wsdl:part element="ns2:syncSubscriptionActiveResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncSubscriptionActive">
+        <wsdl:part element="ns2:syncSubscriptionActive" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="changeMSISDN">
+        <wsdl:part element="ns2:changeMSISDN" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="changeMSISDNResponse">
+        <wsdl:part element="ns2:changeMSISDNResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncOrderRelationResponse">
+        <wsdl:part element="ns2:syncOrderRelationResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncSubscriptionData">
+        <wsdl:part element="ns2:syncSubscriptionData" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncMSISDNChange">
+        <wsdl:part element="ns2:syncMSISDNChange" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="syncMSISDNChangeResponse">
+        <wsdl:part element="ns2:syncMSISDNChangeResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="DataSync">
+        <wsdl:operation name="syncOrderRelation">
+            <wsdl:input message="ns1:syncOrderRelation" name="syncOrderRelation"> </wsdl:input>
+            <wsdl:output message="ns1:syncOrderRelationResponse" name="syncOrderRelationResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="syncSubscriptionData">
+            <wsdl:input message="ns1:syncSubscriptionData" name="syncSubscriptionData"> </wsdl:input>
+            <wsdl:output message="ns1:syncSubscriptionDataResponse" name="syncSubscriptionDataResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="syncMSISDNChange">
+            <wsdl:input message="ns1:syncMSISDNChange" name="syncMSISDNChange"> </wsdl:input>
+            <wsdl:output message="ns1:syncMSISDNChangeResponse" name="syncMSISDNChangeResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="syncSubscriptionActive">
+            <wsdl:input message="ns1:syncSubscriptionActive" name="syncSubscriptionActive"> </wsdl:input>
+            <wsdl:output message="ns1:syncSubscriptionActiveResponse" name="syncSubscriptionActiveResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="changeMSISDN">
+            <wsdl:input message="ns1:changeMSISDN" name="changeMSISDN"> </wsdl:input>
+            <wsdl:output message="ns1:changeMSISDNResponse" name="changeMSISDNResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
