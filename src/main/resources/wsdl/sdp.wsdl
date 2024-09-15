@@ -11,42 +11,6 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="syncSubscriptionData">
-            <soap:operation soapAction="" style="document"/>
-            <wsdl:input name="syncSubscriptionData">
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="syncSubscriptionDataResponse">
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="syncMSISDNChange">
-            <soap:operation soapAction="" style="document"/>
-            <wsdl:input name="syncMSISDNChange">
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="syncMSISDNChangeResponse">
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="syncSubscriptionActive">
-            <soap:operation soapAction="" style="document"/>
-            <wsdl:input name="syncSubscriptionActive">
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="syncSubscriptionActiveResponse">
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="changeMSISDN">
-            <soap:operation soapAction="" style="document"/>
-            <wsdl:input name="changeMSISDN">
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="changeMSISDNResponse">
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="dataService">
         <wsdl:port binding="tns:dataServiceSoapBinding" name="dataPort">
