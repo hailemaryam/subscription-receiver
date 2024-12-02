@@ -1,9 +1,8 @@
-package com.hmmk.dataSync;
+package com.hmmk.service;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
-import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @Path("/api/receive-sdp-custom")
