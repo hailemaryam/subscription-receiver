@@ -47,6 +47,7 @@ public class SdpSyncImpl implements DataSync {
         webServiceQueueItem.setPhone(userID.getID());
         webServiceQueueItem.setServiceId(serviceID);
         webServiceQueueItem.setProductId(productID);
+        webServiceQueueItem.setGeneratedPassword(generate4digitNo());
         webServiceQueueItem.setUpdateType(updateType == 1 ? "ok" : "stop");
         publishNewSub.publishAll(webServiceQueueItem);
     }
@@ -60,4 +61,9 @@ public class SdpSyncImpl implements DataSync {
         phoneList.updateTime = Instant.now();
         phoneList.persist();
     }
+    public String generate4digitNo() {
+        int randomPIN = (int)(Math.random()*9000)+1000;
+        return String.valueOf(randomPIN);
+    }
+
 }
