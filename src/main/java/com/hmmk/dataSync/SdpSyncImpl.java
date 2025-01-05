@@ -50,6 +50,11 @@ public class SdpSyncImpl implements DataSync {
         webServiceQueueItem.setGeneratedPassword(generate4digitNo());
         webServiceQueueItem.setUpdateType(updateType == 1 ? "ok" : "stop");
         publishNewSub.publishAll(webServiceQueueItem);
+        try{
+            restClient.notify(updateType == 1 ? "ok" : "stop", userID.getID());
+        } catch (Exception e){
+            log.error("Error in sending to rest client: " + e.getMessage());
+        }
     }
     private static void saveToDb(UserID userID, String productID, String serviceID, int updateType) {
         PhoneList phoneList = new PhoneList();

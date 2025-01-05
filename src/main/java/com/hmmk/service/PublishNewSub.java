@@ -25,11 +25,16 @@ public class PublishNewSub {
     @Channel("sdp-notify-reporting")
     Emitter<WebServiceQueueItem> emitToReporting;
 
+    @Inject
+    @Channel("sdp-notify-red-ad-receiver")
+    Emitter<WebServiceQueueItem> emitToRedAdReceiver;
+
 
     public void publishAll(WebServiceQueueItem webServiceQueueItem){
         emitToCharging.send(webServiceQueueItem);
         emitToReporting.send(webServiceQueueItem);
         emitToWebRegister.send(webServiceQueueItem);
         emitToSmsSender.send(webServiceQueueItem);
+        emitToRedAdReceiver.send(webServiceQueueItem);
     }
 }
